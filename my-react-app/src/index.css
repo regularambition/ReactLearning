@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, 'Meiryo', sans-serif;
+}
+
+.first-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #244f12;
+  color: white;
+}
+
+.first-screen h1 {
+  margin: 0;
+  font-size: clamp(40px, 7.5vw, 96px);
+  font-weight: 400;
+}

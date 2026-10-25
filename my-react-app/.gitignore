@@ -1,0 +1,27 @@
+# インストールされたライブラリ
+node_modules/
+
+# ビルド出力・キャッシュ
+dist/
+dist-ssr/
+*.tsbuildinfo
+
+# ログ
+logs/
+*.log
+
+# 環境固有の設定・秘密情報
+.env
+.env.*
+*.local
+
+# 秘密情報を含まない設定見本は管理する
+!.env.example
+
+# テスト結果
+coverage/
+
+# OSが生成するファイル
+.DS_Store
+Thumbs.db
+Desktop.ini
