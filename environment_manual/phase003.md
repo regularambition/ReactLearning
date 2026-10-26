@@ -22,13 +22,13 @@ Vite＋React＋TypeScript構成では改行コードをLFに統一するのが�
 git add .
 ```
 
-### git管理対象として追加済のファイルに改行コード設定を再適用
+### git管理対象ファイルに改行コード設定を再適用
 
 ```
 git add --renormalize .
 ```
 
-### git管理対象のファイル改行コード状態を確認
+### git管理対象ファイルの改行コード状態を確認
 
 ```
 git ls-files --eol
