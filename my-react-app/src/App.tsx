@@ -16,7 +16,11 @@ function App() {
       }
       activationLabel={isFirstScreen ? 'メインメニュー画面へ移動' : undefined}
     >
-      {isFirstScreen ? <FirstScreen /> : <MainMenuScreen />}
+      {isFirstScreen ? (
+        <FirstScreen />
+      ) : (
+        <MainMenuScreen screenId={currentScreen} />
+      )}
     </ScreenLayout>
   );
 }

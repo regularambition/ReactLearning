@@ -7,3 +7,13 @@ export const ScreenId = {
 } as const;
 
 export type ScreenId = (typeof ScreenId)[keyof typeof ScreenId];
+
+export function getScreenTitle(screenId: ScreenId) {
+  if (screenId === ScreenId.FIRST) {
+    return '最初の画面';
+  } else if (screenId === ScreenId.MAIN_MENU) {
+    return 'メインメニュー';
+  } else {
+    return 'impossible';
+  }
+}

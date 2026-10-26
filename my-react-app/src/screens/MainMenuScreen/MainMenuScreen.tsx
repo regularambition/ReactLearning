@@ -1,18 +1,28 @@
+import { useUser } from '../../contexts/UserContext';
+import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
 import './MainMenuScreen.css';
 
-function MainMenuScreen() {
+type MainMenuScreenProps = {
+  screenId: ScreenId;
+};
+
+function MainMenuScreen({ screenId }: MainMenuScreenProps) {
+  const { userName } = useUser();
+
+  const screenTitle = getScreenTitle(screenId);
+
   return (
     <div className="main-menu-screen">
-      <nav className="main-menu-screen__menu" aria-label="メインメニュー">
+      <nav className="main-menu-screen__menu" aria-label={screenTitle}>
         {/* 後でボタン要素を配置する */}
       </nav>
 
       <div className="main-menu-screen__user-name">
-        <h6>ユーザー名</h6>
+        <h6>{userName}</h6>
       </div>
 
       <header className="main-menu-screen__title">
-        <h6>メインメニュー画面</h6>
+        <h6>{screenTitle}</h6>
       </header>
 
       <div className="main-menu-screen__content">
