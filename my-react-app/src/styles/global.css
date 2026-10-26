@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, 'Meiryo', sans-serif;
+  background-color: #244f12;
+  color: white;
+}
+
+h1 {
+  /* 1vwは横幅の1%にあたる距離 */
+  /* clamp(MIN, VAL, MAX) が返すのは max(MIN, min(VAL, MAX)) */
+  font-size: clamp(40px, 7.5vw, 96px);
+  font-weight: normal;
+}
+
+h2 {
+  font-size: clamp(28px, 7.5vw, 67px);
+  font-weight: normal;
+}
