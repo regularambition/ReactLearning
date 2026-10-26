@@ -1,0 +1,127 @@
+.main-menu-screen {
+  /*
+   * 親であるScreenLayout内の利用可能な領域を
+   * すべて使用する
+   */
+  flex: 1;
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  /*
+   * 1列目：領域A
+   * 2、3列目：右側を均等に二分割
+   */
+  grid-template-columns:
+    clamp(64px, 7vw, 112px)
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  /*
+   * 1行目：ユーザー名・画面タイトル
+   * 2行目：残りの高さすべて
+   *
+   * autoなので、既存のh1の文字サイズを変更せずに
+   * タイトルが収まる高さになる
+   */
+  grid-template-rows: auto minmax(0, 1fr);
+
+  grid-template-areas:
+    'menu user-name title'
+    'menu content   content';
+}
+
+/* 領域A */
+.main-menu-screen__menu {
+  grid-area: menu;
+
+  display: flex;
+  flex-direction: column;
+
+  /* 横方向は中央揃え */
+  align-items: center;
+
+  /* 縦方向は上寄せ */
+  justify-content: flex-start;
+
+  /*
+   * ボタン同士の間隔が必要な場合に使用する。
+   * 値はボタンのデザインに合わせて変更可能。
+   */
+  gap: 8px;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ユーザー名領域 */
+.main-menu-screen__user-name {
+  grid-area: user-name;
+
+  display: flex;
+
+  /* 縦方向は中央 */
+  align-items: center;
+
+  /* 横方向は左揃え */
+  justify-content: flex-start;
+  text-align: left;
+
+  min-width: 0;
+  padding-inline: 16px;
+}
+
+/* 画面タイトル領域 */
+.main-menu-screen__title {
+  grid-area: title;
+
+  display: flex;
+
+  /* 縦方向は中央 */
+  align-items: center;
+
+  /* 横方向は右揃え */
+  justify-content: flex-end;
+  text-align: right;
+
+  min-width: 0;
+  padding-inline: 16px;
+}
+
+/* 主要部分領域 */
+.main-menu-screen__content {
+  grid-area: content;
+
+  display: flex;
+  flex-direction: column;
+
+  /* ScreenLayoutと同じ配置 */
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+
+  min-width: 0;
+  min-height: 0;
+}
+
+/*
+ * pやh1などが標準で持っているマージンによって
+ * 配置がずれないようにする
+ */
+.main-menu-screen__menu > *,
+.main-menu-screen__user-name > *,
+.main-menu-screen__title > *,
+.main-menu-screen__content > * {
+  margin: 0;
+}
+
+/* ユーザー名と画面タイトルを必ず1行にする */
+.main-menu-screen__user-name > *,
+.main-menu-screen__title > * {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
