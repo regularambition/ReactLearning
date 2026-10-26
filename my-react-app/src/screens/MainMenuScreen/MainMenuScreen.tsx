@@ -1,3 +1,4 @@
+import { BackArrowButton } from '../../components/ui/buttons/ButtonWithIcon/BackArrowButton';
 import { useUser } from '../../contexts/UserContext';
 import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
 import './MainMenuScreen.css';
@@ -14,7 +15,7 @@ function MainMenuScreen({ screenId }: MainMenuScreenProps) {
   return (
     <div className="main-menu-screen">
       <nav className="main-menu-screen__menu" aria-label={screenTitle}>
-        {/* 後でボタン要素を配置する */}
+        <BackArrowButton onClick={() => alert('戻るボタンを押したね')} />
       </nav>
 
       <div className="main-menu-screen__user-name">

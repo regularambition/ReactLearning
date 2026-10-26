@@ -1,0 +1,44 @@
+.button-with-icon {
+  width: clamp(90px, 7vw, 112px);
+  aspect-ratio: 1;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  appearance: none;
+
+  cursor: pointer;
+}
+
+.button-with-icon__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+.button-with-icon:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.button-with-icon:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.button-with-icon:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+}
+
+.button-with-icon:disabled {
+  cursor: default;
+  opacity: 0.5;
+}

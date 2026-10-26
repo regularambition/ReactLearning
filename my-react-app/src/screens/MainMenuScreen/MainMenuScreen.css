@@ -15,7 +15,7 @@
    * 2、3列目：右側を均等に二分割
    */
   grid-template-columns:
-    clamp(64px, 7vw, 112px)
+    clamp(94px, 7vw, 112px)
     minmax(0, 1fr)
     minmax(0, 1fr);
 
