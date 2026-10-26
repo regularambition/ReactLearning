@@ -19,3 +19,7 @@
   /* 各子要素が標準で持っている上下マージンを消す(残っているとflexによる均等配置が失敗する場合有り) */
   margin: 0;
 }
+
+.screen-layout--clickable {
+  cursor: pointer;
+}
