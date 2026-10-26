@@ -8,17 +8,37 @@ body {
 }
 
 .first-screen {
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* 古いブラウザの場合のみこちらが参照される */
+  height: 100vh;
+  height: 100dvh;
   display: flex;
+  /* 主軸を縦方向に変更 */
+  flex-direction: column;
+  /* 交差軸(横方向)について中央揃え */
   align-items: center;
-  justify-content: center;
+  /* 主軸(縦方向)について上端・要素間・下端の空白を均等にする */
+  justify-content: space-evenly;
+  /* 画面外にはみ出した要素を描画しない */
+  overflow: hidden;
   background-color: #244f12;
   color: white;
+  /* 文章が複数行になった場合も各行を中央揃えに */
+  text-align: center;
+}
+
+.first-screen > * {
+  /* 各子要素が標準で持っている上下マージンを消す(残っているとflexによる均等配置が失敗する場合有り) */
+  margin: 0;
 }
 
 .first-screen h1 {
-  margin: 0;
+  /* 1vwは横幅の1%にあたる距離 */
+  /* clamp(MIN, VAL, MAX) が返すのは max(MIN, min(VAL, MAX)) */
   font-size: clamp(40px, 7.5vw, 96px);
-  font-weight: 400;
+  font-weight: normal;
+}
+
+.first-screen h2 {
+  font-size: clamp(28px, 7.5vw, 67px);
+  font-weight: normal;
 }
