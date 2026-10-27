@@ -3,11 +3,11 @@ import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
 import PlainButtonPair from '../../components/ui/buttons/PlainButtonPair/PlainButtonPair';
 import { type ScreenId } from '../../types/ScreenId';
 
-type MainMenuScreenProps = {
+type MenuTopScreenProps = {
   screenId: ScreenId;
 };
 
-function MainMenuScreen({ screenId }: MainMenuScreenProps) {
+function MenuTopScreen({ screenId }: MenuTopScreenProps) {
   return (
     <SidebarScreenLayout screenId={screenId}>
       <PlainButtonPair>
@@ -25,4 +25,4 @@ function MainMenuScreen({ screenId }: MainMenuScreenProps) {
   );
 }
 
-export default MainMenuScreen;
+export default MenuTopScreen;
