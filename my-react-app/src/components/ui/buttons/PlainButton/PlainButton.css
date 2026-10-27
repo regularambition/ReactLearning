@@ -1,0 +1,53 @@
+.plain-button {
+  /*
+   * 現時点での仮サイズ。
+   * 後からデザインに合わせて調整可能。
+   */
+  width: min(100%, 390px);
+  min-height: 138px;
+  padding: 24px 32px;
+
+  /*
+   * ボタン内の文字列を縦横中央へ配置。
+   */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #5f6973;
+  border-radius: 22px;
+
+  background-color: #a9c8f4;
+  color: #111;
+
+  /*
+   * button要素はブラウザ独自のフォントを使う場合があるため、
+   * 周囲と同じフォント設定を明示的に引き継ぐ。
+   */
+  font: inherit;
+  text-align: center;
+
+  font-size: 30px;
+
+  appearance: none;
+  cursor: pointer;
+}
+
+.plain-button:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.plain-button:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: none;
+}
+
+.plain-button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+}
+
+.plain-button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
