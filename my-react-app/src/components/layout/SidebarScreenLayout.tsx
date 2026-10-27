@@ -1,21 +1,19 @@
 import type { ReactNode } from 'react';
 import { useUser } from '../../contexts/UserContext';
-import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
+import { getScreenTitle } from '../../types/ScreenId';
 import './SidebarScreenLayout.css';
 import { useScreenNavigation } from '../../contexts/ScreenNavigationContext';
 import { BackArrowButton } from '../ui/buttons/ButtonWithIcon/BackArrowButton';
 import { StarButton } from '../ui/buttons/ButtonWithIcon/StarButton';
 
 type SidebarScreenLayoutProps = {
-  screenId: ScreenId;
   children: ReactNode;
-  sidebarAriaLabel?: string;
 };
 
-function SidebarScreenLayout({ screenId, children }: SidebarScreenLayoutProps) {
+function SidebarScreenLayout({ children }: SidebarScreenLayoutProps) {
   const { userName } = useUser();
   const { canGoBack, goBack } = useScreenNavigation();
-  const screenTitle = getScreenTitle(screenId);
+  const screenTitle = getScreenTitle(useScreenNavigation().currentScreen);
 
   return (
     <div className="sidebar-screen-layout">

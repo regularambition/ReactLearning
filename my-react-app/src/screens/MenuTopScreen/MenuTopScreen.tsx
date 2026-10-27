@@ -1,11 +1,10 @@
 import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
 import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
 import PlainButtonPair from '../../components/ui/buttons/PlainButtonPair/PlainButtonPair';
-import { useScreenNavigation } from '../../contexts/ScreenNavigationContext';
 
 function MenuTopScreen() {
   return (
-    <SidebarScreenLayout screenId={useScreenNavigation().currentScreen}>
+    <SidebarScreenLayout>
       <PlainButtonPair>
         <PlainButton onClick={() => alert('機能1')}>機能1</PlainButton>
 
