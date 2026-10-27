@@ -11,7 +11,7 @@ type ScreenNavigationProviderProps = {
 
 function ScreenNavigationProvider({ children }: ScreenNavigationProviderProps) {
   const [screenHistory, setScreenHistory] = useState<ScreenId[]>([
-    ScreenId.FIRST,
+    ScreenId.GAME_TITLE,
   ]);
 
   const currentScreen = screenHistory[screenHistory.length - 1];

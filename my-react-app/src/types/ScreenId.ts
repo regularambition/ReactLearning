@@ -2,15 +2,15 @@
 // 定数と型の両方に対して同じ名前を与えることが可能
 
 export const ScreenId = {
-  FIRST: 'first',
+  GAME_TITLE: 'first',
   MAIN_MENU: 'mainMenu',
 } as const;
 
 export type ScreenId = (typeof ScreenId)[keyof typeof ScreenId];
 
 export function getScreenTitle(screenId: ScreenId) {
-  if (screenId === ScreenId.FIRST) {
-    return '最初の画面';
+  if (screenId === ScreenId.GAME_TITLE) {
+    return 'ゲームタイトル';
   } else if (screenId === ScreenId.MAIN_MENU) {
     return 'メインメニュー';
   } else {

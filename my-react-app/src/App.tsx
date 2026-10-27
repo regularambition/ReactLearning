@@ -1,22 +1,26 @@
 import ScreenLayout from './components/layout/ScreenLayout';
 import GameTitleScreen from './screens/GameTitleScreen/GameTitleScreen';
 import MainMenuScreen from './screens/MainMenuScreen/MainMenuScreen';
-import { ScreenId } from './types/ScreenId';
+import { getScreenTitle, ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
 
 function App() {
   const { currentScreen, navigate } = useScreenNavigation();
 
-  const isFirstScreen = currentScreen === ScreenId.FIRST;
+  const isGameTitleScreen = currentScreen === ScreenId.GAME_TITLE;
 
   return (
     <ScreenLayout
       onActivate={
-        isFirstScreen ? () => navigate(ScreenId.MAIN_MENU) : undefined
+        isGameTitleScreen ? () => navigate(ScreenId.MAIN_MENU) : undefined
       }
-      activationLabel={isFirstScreen ? 'メインメニュー画面へ移動' : undefined}
+      activationLabel={
+        isGameTitleScreen
+          ? `${getScreenTitle(ScreenId.MAIN_MENU)}画面へ移動`
+          : undefined
+      }
     >
-      {isFirstScreen ? (
+      {isGameTitleScreen ? (
         <GameTitleScreen />
       ) : (
         <MainMenuScreen screenId={currentScreen} />

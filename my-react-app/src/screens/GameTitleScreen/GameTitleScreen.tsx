@@ -5,7 +5,7 @@ function GameTitleScreen() {
       <h2>
         任意の場所をクリックして
         <br />
-        メインメニュー画面へ
+        ゲーム開始
       </h2>
     </>
   );
