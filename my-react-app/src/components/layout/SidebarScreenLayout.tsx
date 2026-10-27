@@ -4,6 +4,7 @@ import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
 import './SidebarScreenLayout.css';
 import { useScreenNavigation } from '../../contexts/ScreenNavigationContext';
 import { BackArrowButton } from '../ui/buttons/ButtonWithIcon/BackArrowButton';
+import { StarButton } from '../ui/buttons/ButtonWithIcon/StarButton';
 
 type SidebarScreenLayoutProps = {
   screenId: ScreenId;
@@ -23,6 +24,7 @@ function SidebarScreenLayout({ screenId, children }: SidebarScreenLayoutProps) {
         aria-label={`${screenTitle}の操作メニュー`}
       >
         {canGoBack && <BackArrowButton onClick={goBack} />}
+        <StarButton onClick={() => alert('★ボタン')} />
       </nav>
 
       <div className="sidebar-screen-layout__user-name">
