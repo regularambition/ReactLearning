@@ -9,6 +9,17 @@ function App() {
 
   const isGameTitleScreen = currentScreen === ScreenId.GAME_TITLE;
 
+  const getRenderedScreen = () => {
+    if (currentScreen === ScreenId.GAME_TITLE) {
+      return <GameTitleScreen />;
+    }
+    if (currentScreen === ScreenId.MENU_TOP) {
+      return <MenuTopScreen />;
+    }
+
+    return <MenuTopScreen />;
+  };
+
   return (
     <ScreenLayout
       onActivate={
@@ -20,7 +31,7 @@ function App() {
           : undefined
       }
     >
-      {isGameTitleScreen ? <GameTitleScreen /> : <MenuTopScreen />}
+      {getRenderedScreen()}
     </ScreenLayout>
   );
 }
