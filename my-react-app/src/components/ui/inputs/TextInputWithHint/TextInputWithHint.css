@@ -1,0 +1,51 @@
+.text-input-with-hint {
+  width: min(85%, 906px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.text-input-with-hint__label {
+  /* 見た目には表示せず、スクリーンリーダーには入力欄の名前を伝える。 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-input-with-hint__input {
+  width: 100%;
+  min-height: clamp(72px, 10vw, 108px);
+  padding: 16px 24px;
+
+  border: 1px solid #d7d7d7;
+  border-radius: 0;
+  background-color: white;
+  color: #111;
+
+  font: inherit;
+  font-size: clamp(24px, 4vw, 36px);
+  text-align: left;
+}
+
+.text-input-with-hint__input:focus-visible {
+  outline: 4px solid #a9c8f4;
+  outline-offset: 3px;
+}
+
+.text-input-with-hint__hint,
+.text-input-with-hint__error {
+  margin: 0;
+  font-size: clamp(18px, 3vw, 32px);
+}
+
+.text-input-with-hint__error {
+  color: #ffd1d1;
+}

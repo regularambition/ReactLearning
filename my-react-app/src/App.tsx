@@ -1,6 +1,7 @@
 import ScreenLayout from './components/layout/ScreenLayout';
 import GameTitleScreen from './screens/GameTitleScreen/GameTitleScreen';
 import MenuTopScreen from './screens/MenuTopScreen/MenuTopScreen';
+import UserNameUpdateScreen from './screens/UserNameUpdateScreen/UserNameUpdateScreen';
 import { getScreenTitle, ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
 
@@ -15,6 +16,9 @@ function App() {
     }
     if (currentScreen === ScreenId.MENU_TOP) {
       return <MenuTopScreen />;
+    }
+    if (currentScreen === ScreenId.USER_NAME_UPDATE) {
+      return <UserNameUpdateScreen />;
     }
 
     return <MenuTopScreen />;
