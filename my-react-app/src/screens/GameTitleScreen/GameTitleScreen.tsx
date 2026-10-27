@@ -1,9 +1,7 @@
-// import './FirstScreen.css';
-
-function FirstScreen() {
+function GameTitleScreen() {
   return (
     <>
-      <h1>最初の画面</h1>
+      <h1>ゲームタイトル</h1>
       <h2>
         任意の場所をクリックして
         <br />
@@ -13,4 +11,4 @@ function FirstScreen() {
   );
 }
 
-export default FirstScreen;
+export default GameTitleScreen;

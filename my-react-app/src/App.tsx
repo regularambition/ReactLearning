@@ -1,5 +1,5 @@
 import ScreenLayout from './components/layout/ScreenLayout';
-import FirstScreen from './screens/FirstScreen/FirstScreen';
+import GameTitleScreen from './screens/GameTitleScreen/GameTitleScreen';
 import MainMenuScreen from './screens/MainMenuScreen/MainMenuScreen';
 import { ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
@@ -17,7 +17,7 @@ function App() {
       activationLabel={isFirstScreen ? 'メインメニュー画面へ移動' : undefined}
     >
       {isFirstScreen ? (
-        <FirstScreen />
+        <GameTitleScreen />
       ) : (
         <MainMenuScreen screenId={currentScreen} />
       )}
