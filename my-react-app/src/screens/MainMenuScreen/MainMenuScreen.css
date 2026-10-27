@@ -29,13 +29,13 @@
   grid-template-rows: auto minmax(0, 1fr);
 
   grid-template-areas:
-    'menu user-name title'
-    'menu content   content';
+    'sidebar user-name title'
+    'sidebar content   content';
 }
 
-/* 領域A */
-.main-menu-screen__menu {
-  grid-area: menu;
+/* サイドバー領域 */
+.main-menu-screen__sidebar {
+  grid-area: sidebar;
 
   display: flex;
   flex-direction: column;
@@ -111,7 +111,7 @@
  * pやh1などが標準で持っているマージンによって
  * 配置がずれないようにする
  */
-.main-menu-screen__menu > *,
+.main-menu-screen__sidebar > *,
 .main-menu-screen__user-name > *,
 .main-menu-screen__title > *,
 .main-menu-screen__content > * {

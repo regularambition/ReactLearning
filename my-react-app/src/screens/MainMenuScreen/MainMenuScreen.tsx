@@ -14,7 +14,7 @@ function MainMenuScreen({ screenId }: MainMenuScreenProps) {
 
   return (
     <div className="main-menu-screen">
-      <nav className="main-menu-screen__menu" aria-label={screenTitle}>
+      <nav className="main-menu-screen__sidebar" aria-label={screenTitle}>
         <BackArrowButton onClick={() => alert('戻るボタンを押したね')} />
       </nav>
 
