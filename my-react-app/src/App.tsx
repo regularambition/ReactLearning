@@ -20,11 +20,7 @@ function App() {
           : undefined
       }
     >
-      {isGameTitleScreen ? (
-        <GameTitleScreen />
-      ) : (
-        <MenuTopScreen screenId={currentScreen} />
-      )}
+      {isGameTitleScreen ? <GameTitleScreen /> : <MenuTopScreen />}
     </ScreenLayout>
   );
 }
