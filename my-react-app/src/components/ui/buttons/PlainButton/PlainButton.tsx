@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import './PlainButton.css';
 
-type PlainButtonProps = {
+export type PlainButtonProps = {
   children: ReactNode;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className'>;
 

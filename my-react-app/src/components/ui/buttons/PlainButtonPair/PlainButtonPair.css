@@ -1,0 +1,29 @@
+.plain-button-pair {
+  /*
+   * 親である主要部分領域の横幅をすべて使用する。
+   * これがないと、ボタン2つ分の幅まで縮む可能性があり、
+   * 左右端との空白を作れなくなる。
+   */
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: row;
+
+  /*
+   * 左端・ボタン間・右端の空白を均等にする。
+   */
+  justify-content: space-evenly;
+
+  /*
+   * 2つのボタンを縦方向の中央で揃える。
+   */
+  align-items: center;
+}
+
+.plain-button-pair > .plain-button {
+  /*
+   * 画面幅が狭い場合にボタンが縮小できるようにする。
+   */
+  min-width: 0;
+}
