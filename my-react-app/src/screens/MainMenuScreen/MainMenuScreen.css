@@ -70,6 +70,7 @@
   text-align: left;
 
   min-width: 0;
+  /* 横並びしている要素のうち先頭の左側と末尾の左側に空白を(div自身の内側)入れる */
   padding-inline: 16px;
 }
 
@@ -122,6 +123,8 @@
 .main-menu-screen__title > * {
   max-width: 100%;
   overflow: hidden;
+  /* テキストがはみ出た場合はその部分を三点リーダーとして表示 */
   text-overflow: ellipsis;
+  /* テキストを途中で自動折り返ししない */
   white-space: nowrap;
 }

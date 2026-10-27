@@ -2,16 +2,24 @@
   width: clamp(90px, 7vw, 112px);
   aspect-ratio: 1;
 
+  /* ↓↓↓ button要素の子要素の並べ方指定 ↓↓↓ */
+  /* 自身は横方向に並べ、子要素をFlexboxレイアウトに(表示される画像のサイズ変更時に影響が分かりやすく見られる) */
   display: inline-flex;
+  /* 明示的な指定がないので主軸は横方向 */
+  /* 子要素を交差軸(縦方向)について中央揃え */
   align-items: center;
+  /* 子要素を主軸(横方向)について中央揃え */
   justify-content: center;
+  /* ↑↑↑ button要素の子要素の並べ方指定 ↑↑↑ */
 
   padding: 0;
   border: 0;
   background: transparent;
   color: inherit;
+  /* ブラウザ・OSなどが標準で用意している見た目を無効化 */
   appearance: none;
 
+  /* マウスカーソルを手の形として表示 */
   cursor: pointer;
 }
 
@@ -19,26 +27,42 @@
   display: block;
   width: 100%;
   height: 100%;
+  /* 自身の縦横比を維持しつつ親要素の枠内に全体が収まるように自動で縮小・拡大 */
   object-fit: contain;
 
+  /* img要素のクリックは親要素であるbuttonに対して伝搬するのが通常の挙動だが 
+
+  */
+  /* 自身に対するクリック・タップ・ホバー(マウスオーバー)などによる影響をなくしてbuttonに直接影響させる */
   pointer-events: none;
+  /* ドラッグされた時にimg要素が選択されないようにする */
   user-select: none;
 }
 
+/* マウスポインタがbuttonの上に乗っていてbuttonが無効化されていない時に使用される */
 .button-with-icon:hover:not(:disabled) {
+  /* 明るさの変更 */
   filter: brightness(1.1);
 }
 
+/* button要素の上で左クリックを開始した瞬間から左クリックの終了まで(無効化されていない場合のみ) */
 .button-with-icon:active:not(:disabled) {
+  /* 大きさの変更 */
   transform: scale(0.95);
 }
 
+/* Tabキーなどによりキーボード操作によってbuttonにフォーカスが移った時 */
 .button-with-icon:focus-visible {
+  /* 周囲に実線で枠を表示 */
   outline: 3px solid currentColor;
+  /* フォーカス時に表示される枠線を自身の外側へ離す */
   outline-offset: 2px;
 }
 
+/* buttonにdisbled属性が指定されて無効化されている時 */
 .button-with-icon:disabled {
+  /* マウスカーソルを通常通り矢印として表示 */
   cursor: default;
+  /* 50%の不透明度を指定 */
   opacity: 0.5;
 }
