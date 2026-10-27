@@ -1,35 +1,35 @@
+import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
 import { BackArrowButton } from '../../components/ui/buttons/ButtonWithIcon/BackArrowButton';
-import { useUser } from '../../contexts/UserContext';
+import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
+import PlainButtonPair from '../../components/ui/buttons/PlainButtonPair/PlainButtonPair';
 import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
-import './MainMenuScreen.css';
 
 type MainMenuScreenProps = {
   screenId: ScreenId;
 };
 
 function MainMenuScreen({ screenId }: MainMenuScreenProps) {
-  const { userName } = useUser();
-
   const screenTitle = getScreenTitle(screenId);
 
   return (
-    <div className="main-menu-screen">
-      <nav className="main-menu-screen__sidebar" aria-label={screenTitle}>
+    <SidebarScreenLayout
+      screenTitle={screenTitle}
+      sidebar={
         <BackArrowButton onClick={() => alert('戻るボタンを押したね')} />
-      </nav>
+      }
+    >
+      <PlainButtonPair>
+        <PlainButton onClick={() => alert('機能1')}>機能1</PlainButton>
 
-      <div className="main-menu-screen__user-name">
-        <h6>{userName}</h6>
-      </div>
+        <PlainButton onClick={() => alert('機能2')}>機能2</PlainButton>
+      </PlainButtonPair>
 
-      <header className="main-menu-screen__title">
-        <h6>{screenTitle}</h6>
-      </header>
+      <PlainButtonPair>
+        <PlainButton onClick={() => alert('機能3')}>機能3</PlainButton>
 
-      <div className="main-menu-screen__content">
-        {/* 主要部分の要素を配置する */}
-      </div>
-    </div>
+        <PlainButton onClick={() => alert('機能4')}>機能4</PlainButton>
+      </PlainButtonPair>
+    </SidebarScreenLayout>
   );
 }
 
