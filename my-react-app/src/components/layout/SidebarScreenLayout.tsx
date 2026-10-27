@@ -1,27 +1,28 @@
 import type { ReactNode } from 'react';
 import { useUser } from '../../contexts/UserContext';
+import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
 import './SidebarScreenLayout.css';
 
 type SidebarScreenLayoutProps = {
-  screenTitle: string;
+  screenId: ScreenId;
   sidebar: ReactNode;
   children: ReactNode;
   sidebarAriaLabel?: string;
 };
 
 function SidebarScreenLayout({
-  screenTitle,
+  screenId,
   sidebar,
   children,
-  sidebarAriaLabel = `${screenTitle}の操作メニュー`,
 }: SidebarScreenLayoutProps) {
   const { userName } = useUser();
+  const screenTitle = getScreenTitle(screenId);
 
   return (
     <div className="sidebar-screen-layout">
       <nav
         className="sidebar-screen-layout__sidebar"
-        aria-label={sidebarAriaLabel}
+        aria-label={`${screenTitle}の操作メニュー`}
       >
         {sidebar}
       </nav>
