@@ -2,20 +2,18 @@ import type { ReactNode } from 'react';
 import { useUser } from '../../contexts/UserContext';
 import { getScreenTitle, type ScreenId } from '../../types/ScreenId';
 import './SidebarScreenLayout.css';
+import { useScreenNavigation } from '../../contexts/ScreenNavigationContext';
+import { BackArrowButton } from '../ui/buttons/ButtonWithIcon/BackArrowButton';
 
 type SidebarScreenLayoutProps = {
   screenId: ScreenId;
-  sidebar: ReactNode;
   children: ReactNode;
   sidebarAriaLabel?: string;
 };
 
-function SidebarScreenLayout({
-  screenId,
-  sidebar,
-  children,
-}: SidebarScreenLayoutProps) {
+function SidebarScreenLayout({ screenId, children }: SidebarScreenLayoutProps) {
   const { userName } = useUser();
+  const { canGoBack, goBack } = useScreenNavigation();
   const screenTitle = getScreenTitle(screenId);
 
   return (
@@ -24,7 +22,7 @@ function SidebarScreenLayout({
         className="sidebar-screen-layout__sidebar"
         aria-label={`${screenTitle}の操作メニュー`}
       >
-        {sidebar}
+        {canGoBack && <BackArrowButton onClick={goBack} />}
       </nav>
 
       <div className="sidebar-screen-layout__user-name">

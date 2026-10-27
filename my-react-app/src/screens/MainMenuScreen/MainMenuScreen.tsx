@@ -1,5 +1,4 @@
 import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
-import { BackArrowButton } from '../../components/ui/buttons/ButtonWithIcon/BackArrowButton';
 import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
 import PlainButtonPair from '../../components/ui/buttons/PlainButtonPair/PlainButtonPair';
 import { type ScreenId } from '../../types/ScreenId';
@@ -10,12 +9,7 @@ type MainMenuScreenProps = {
 
 function MainMenuScreen({ screenId }: MainMenuScreenProps) {
   return (
-    <SidebarScreenLayout
-      screenId={screenId}
-      sidebar={
-        <BackArrowButton onClick={() => alert('戻るボタンを押したね')} />
-      }
-    >
+    <SidebarScreenLayout screenId={screenId}>
       <PlainButtonPair>
         <PlainButton onClick={() => alert('機能1')}>機能1</PlainButton>
 
