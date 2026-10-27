@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEventHandler } from 'react';
 import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
 import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
 import TextInputWithHint from '../../components/ui/inputs/TextInputWithHint/TextInputWithHint';
@@ -16,7 +16,7 @@ function UserNameUpdateScreen() {
   const [newUserName, setNewUserName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
     if (!USER_NAME_PATTERN.test(newUserName)) {
