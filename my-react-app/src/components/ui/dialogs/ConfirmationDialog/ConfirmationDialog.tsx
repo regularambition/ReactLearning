@@ -20,6 +20,7 @@ function ConfirmationDialog({
   onConfirm,
   onCancel,
 }: ConfirmationDialogProps) {
+  // 初期状態はnullで、この関数が呼び出された直後に実際のDOM要素が入る
   const dialogRef = useRef<HTMLDialogElement>(null);
   const messageId = useId();
 
@@ -31,8 +32,10 @@ function ConfirmationDialog({
     }
 
     if (open && !dialog.open) {
+      // Reactの機能ではなくブラウザが提供する HTMLDialogElement のメソッド
       dialog.showModal();
     } else if (!open && dialog.open) {
+      // DOM要素のメソッド呼び出しはReact管轄外であり副作用にあたる
       dialog.close();
     }
 
