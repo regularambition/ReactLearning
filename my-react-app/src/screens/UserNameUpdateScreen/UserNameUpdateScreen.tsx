@@ -5,11 +5,8 @@ import ConfirmationDialog from '../../components/ui/dialogs/ConfirmationDialog/C
 import TextInputWithHint from '../../components/ui/inputs/TextInputWithHint/TextInputWithHint';
 import { useScreenNavigation } from '../../contexts/ScreenNavigationContext';
 import { useUser } from '../../contexts/UserContext';
+import UserNameValidator from '../../validators/UserNameValidator';
 import './UserNameUpdateScreen.css';
-
-const USER_NAME_PATTERN = /^[A-Za-z0-9]{1,16}$/;
-const USER_NAME_HINT = '※16文字以内の半角英数字のみ入力可能';
-const USER_NAME_ERROR = '1〜16文字の半角英数字で入力してください';
 
 function UserNameUpdateScreen() {
   const { setUserName } = useUser();
@@ -20,9 +17,10 @@ function UserNameUpdateScreen() {
 
   const handleSubmit: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+    const validationResult = UserNameValidator.validate(newUserName);
 
-    if (!USER_NAME_PATTERN.test(newUserName)) {
-      setErrorMessage(USER_NAME_ERROR);
+    if (!validationResult.isValid) {
+      setErrorMessage(validationResult.errorMessage);
       return;
     }
 
@@ -37,16 +35,18 @@ function UserNameUpdateScreen() {
 
   return (
     <SidebarScreenLayout>
-      <form className="user-name-update-form" onSubmit={handleSubmit} noValidate>
+      <form
+        className="user-name-update-form"
+        onSubmit={handleSubmit}
+        noValidate
+      >
         <TextInputWithHint
           id="new-user-name"
           label="新しいユーザー名"
-          hint={USER_NAME_HINT}
+          hint={UserNameValidator.hint()}
           errorMessage={errorMessage || undefined}
           type="text"
           value={newUserName}
-          maxLength={16}
-          pattern="[A-Za-z0-9]{1,16}"
           autoComplete="username"
           autoFocus
           onChange={(event) => {
