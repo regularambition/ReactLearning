@@ -4,6 +4,7 @@ import MenuTopScreen from './screens/MenuTopScreen/MenuTopScreen';
 import UserNameUpdateScreen from './screens/UserNameUpdateScreen/UserNameUpdateScreen';
 import { getScreenTitle, ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
+import HowToPlayScreen from './screens/HowToPlayScreen/HowToPlayScreen';
 
 function App() {
   const { currentScreen, navigate } = useScreenNavigation();
@@ -21,7 +22,7 @@ function App() {
       return <UserNameUpdateScreen />;
     }
 
-    return <MenuTopScreen />;
+    return <HowToPlayScreen />;
   };
 
   return (

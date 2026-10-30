@@ -13,7 +13,7 @@ export function PagingForwardButton({
   return (
     <ButtonWithIcon
       iconSrc={pagingForwardIcon}
-      ariaLabel="前のページへ"
+      ariaLabel="次のページへ"
       onClick={onClick}
       disabled={disabled}
     />

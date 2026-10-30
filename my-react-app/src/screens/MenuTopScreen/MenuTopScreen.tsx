@@ -14,7 +14,9 @@ function MenuTopScreen() {
           ユーザー名変更
         </PlainButton>
 
-        <PlainButton onClick={() => alert('機能2')}>機能2</PlainButton>
+        <PlainButton onClick={() => navigate(ScreenId.HOW_TO_PLAY)}>
+          遊び方
+        </PlainButton>
       </PlainButtonPair>
 
       <PlainButtonPair>
