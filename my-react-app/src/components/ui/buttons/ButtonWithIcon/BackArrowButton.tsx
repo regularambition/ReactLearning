@@ -1,6 +1,5 @@
-import './ButtonWithIcon';
 import ButtonWithIcon from './ButtonWithIcon';
-import backArrow from '../../../../assets/images/button_icons/backArrow.png';
+import { backArrowIcon } from '../../../../asset_path_reference/images/button_icons';
 
 type BackArrowButtonProps = {
   onClick: () => void;
@@ -9,7 +8,7 @@ type BackArrowButtonProps = {
 export function BackArrowButton({ onClick }: BackArrowButtonProps) {
   return (
     <ButtonWithIcon
-      iconSrc={backArrow}
+      iconSrc={backArrowIcon}
       ariaLabel="前の画面に戻る"
       onClick={onClick}
     />
