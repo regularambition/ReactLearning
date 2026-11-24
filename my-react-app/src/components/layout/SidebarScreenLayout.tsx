@@ -8,9 +8,10 @@ import { StarButton } from '../ui/buttons/ButtonWithIcon/StarButton';
 
 type SidebarScreenLayoutProps = {
   children: ReactNode;
+  onBack?: () => void;
 };
 
-function SidebarScreenLayout({ children }: SidebarScreenLayoutProps) {
+function SidebarScreenLayout({ children, onBack }: SidebarScreenLayoutProps) {
   const { userName } = useUser();
   const { canGoBack, goBack } = useScreenNavigation();
   const screenTitle = getScreenTitle(useScreenNavigation().currentScreen);
@@ -21,7 +22,7 @@ function SidebarScreenLayout({ children }: SidebarScreenLayoutProps) {
         className="sidebar-screen-layout__sidebar"
         aria-label={`${screenTitle}の操作メニュー`}
       >
-        {canGoBack && <BackArrowButton onClick={goBack} />}
+        {canGoBack && <BackArrowButton onClick={onBack ?? goBack} />}
         <StarButton onClick={() => alert('★ボタン')} />
       </nav>
 
