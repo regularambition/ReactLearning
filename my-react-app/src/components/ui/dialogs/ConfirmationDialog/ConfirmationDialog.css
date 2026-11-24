@@ -15,8 +15,7 @@
 
   border: 1px solid #65705f;
   border-radius: clamp(40px, 6vw, 68px);
-  background-color: #b8d9aa;
-  color: #5f5965;
+  background-image: linear-gradient(135deg, #56c962, #2766c0);
 }
 
 /* <dialog> 要素に open 属性が付与され開いているときに適用 */
