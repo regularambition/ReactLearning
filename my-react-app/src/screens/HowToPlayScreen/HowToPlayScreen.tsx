@@ -3,6 +3,7 @@ import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
 import { Card } from '../../types/Cards';
 import CardEffectPage from './components/CardEffectPage';
 import CardMatchupPage from './components/CardMatchupPage';
+import BasicRulePage from './components/BasicRulePage';
 
 type FinishingPair = {
   winner: Card;
@@ -34,10 +35,25 @@ type CardMatchupPageDefinition = {
   loser: Card;
 };
 
+type BasicRulePageDefinition = {
+  type: 'basicRule';
+  rules: readonly string[];
+};
+
 type HowToPlayPageDefinition =
-  CardEffectPageDefinition | CardMatchupPageDefinition;
+  | CardEffectPageDefinition
+  | CardMatchupPageDefinition
+  | BasicRulePageDefinition;
 
 const howToPlayPages: ReadonlyArray<HowToPlayPageDefinition> = [
+  {
+    type: 'basicRule',
+    rules: ['ルール説明1', 'ルール説明2'],
+  },
+  {
+    type: 'basicRule',
+    rules: ['ルール説明3', 'ルール説明4'],
+  },
   ...Object.values(Card).map<CardEffectPageDefinition>((card) => ({
     type: 'cardEffect',
     card,
@@ -74,7 +90,13 @@ function HowToPlayScreen() {
 
   return (
     <SidebarScreenLayout>
-      {currentPageDefinition.type === 'cardEffect' ? (
+      {currentPageDefinition.type === 'basicRule' ? (
+        <BasicRulePage
+          pageNo={currentPageIndex + 1}
+          rules={currentPageDefinition.rules}
+          {...pagingProps}
+        />
+      ) : currentPageDefinition.type === 'cardEffect' ? (
         <CardEffectPage
           cardName={currentPageDefinition.card.name}
           iconSrc={currentPageDefinition.card.iconPath}
