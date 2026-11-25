@@ -33,7 +33,7 @@ function MenuTopScreen() {
         </PlainButton>
 
         <PlainButton onClick={() => navigate(ScreenId.SIMPLE_GAME)}>
-          機能4
+          ゲームを遊ぶ
         </PlainButton>
       </PlainButtonPair>
 

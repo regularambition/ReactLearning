@@ -21,7 +21,7 @@
 }
 
 .game-round-panel__timer {
-  text-align: right;
+  text-align: center;
   font-size: clamp(16px, 2.8vw, 34px);
 }
 
@@ -39,12 +39,4 @@
 .game-round-panel__actions {
   align-self: center;
   min-width: 0;
-}
-
-.game-round-panel__actions .plain-button {
-  width: min(38%, 320px);
-  min-height: clamp(56px, 16vh, 112px);
-  padding: 8px;
-  background: #a4bfeb;
-  font-size: clamp(16px, 2.4vw, 28px);
 }

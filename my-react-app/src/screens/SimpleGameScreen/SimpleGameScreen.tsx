@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import SidebarScreenLayout from '../../components/layout/SidebarScreenLayout';
 import './SimpleGameScreen.css';
 import PlainButton from '../../components/ui/buttons/PlainButton/PlainButton';
@@ -45,6 +45,41 @@ type ResultPanelProps = {
   playerAction: number;
 };
 
+type GameState = {
+  phase: PhaseOfGame;
+  opponentScore: number;
+  playerScore: number;
+  opponentAction: number;
+  playerAction: number;
+};
+
+const SELECTING_SECONDS = 10;
+const RESULT_SECONDS = 3;
+
+function didOpponentWin(opponentAction: number, playerAction: number) {
+  return opponentAction === playerAction;
+}
+
+function startResult(game: GameState, playerAction: number): GameState {
+  return {
+    ...game,
+    phase: PhaseOfGame.RESULT,
+    playerAction,
+    opponentAction: getRandomInt(2),
+  };
+}
+
+function startNextRound(game: GameState): GameState {
+  const opponentWon = didOpponentWin(game.opponentAction, game.playerAction);
+
+  return {
+    ...game,
+    phase: PhaseOfGame.SELECTING,
+    opponentScore: game.opponentScore + (opponentWon ? 1 : 0),
+    playerScore: game.playerScore + (opponentWon ? 0 : 1),
+  };
+}
+
 function ResultPanel({
   waitingSec,
   opponentAction,
@@ -61,16 +96,79 @@ function ResultPanel({
           <p>相手の選択：行動{opponentAction}</p>
           <p>あなたの選択：行動{playerAction}</p>
         </div>
-        <p>{`${opponentAction === playerAction ? '相手' : 'あなた'}の勝利`}</p>
+        <p>{`${didOpponentWin(opponentAction, playerAction) ? '相手' : 'あなた'}の勝利`}</p>
       </div>
     </div>
   );
 }
 
+function getRandomInt(ub: number) {
+  return Math.floor(Math.random() * ub);
+}
+
 function SimpleGameScreen() {
-  const [phase, setPhase] = useState<PhaseOfGame>(PhaseOfGame.SELECTING);
-  const [opponentScore, setOpponentScore] = useState(0);
-  const [playerScore, setPlayerScore] = useState(3);
+  const [game, setGame] = useState<GameState>({
+    phase: PhaseOfGame.SELECTING,
+    opponentScore: 0,
+    playerScore: 0,
+    opponentAction: 0,
+    playerAction: 0,
+  });
+
+  const [countdown, setCountdown] = useState<{
+    game: GameState;
+    seconds: number;
+  } | null>(null);
+
+  const deadlineRef = useRef<{
+    game: GameState;
+    time: number;
+  } | null>(null);
+
+  const { phase, opponentScore, playerScore, opponentAction, playerAction } =
+    game;
+
+  const duration =
+    phase === PhaseOfGame.SELECTING ? SELECTING_SECONDS : RESULT_SECONDS;
+
+  const remainingSec = countdown?.game === game ? countdown.seconds : duration;
+
+  const handleSelectingAction = (action: number) => {
+    const deadline = deadlineRef.current;
+    const expired =
+      deadline?.game === game && performance.now() >= deadline.time;
+
+    const nextGame = startResult(game, expired ? game.playerAction : action);
+    setGame((current) => (current === game ? nextGame : current));
+  };
+
+  useEffect(() => {
+    const deadline = performance.now() + duration * 1000;
+    deadlineRef.current = { game, time: deadline };
+
+    const intervalId = window.setInterval(() => {
+      const millisecondsLeft = Math.max(0, deadline - performance.now());
+
+      setCountdown({
+        game,
+        seconds: Math.ceil(millisecondsLeft / 1000),
+      });
+    }, 100);
+
+    const timeoutId = window.setTimeout(() => {
+      const nextGame =
+        game.phase === PhaseOfGame.SELECTING
+          ? startResult(game, game.playerAction)
+          : startNextRound(game);
+
+      setGame((current) => (current === game ? nextGame : current));
+    }, duration * 1000);
+
+    return () => {
+      window.clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
+    };
+  }, [game, duration]);
 
   return (
     <SidebarScreenLayout showHeader={false}>
@@ -86,15 +184,15 @@ function SimpleGameScreen() {
           <div className="simple-game-screen__play-content">
             {phase === PhaseOfGame.SELECTING ? (
               <SelectingPanel
-                remainingSec={10}
-                onSelectA={() => alert('Aを選択')}
-                onSelectB={() => setPhase(PhaseOfGame.RESULT)}
+                remainingSec={remainingSec}
+                onSelectA={() => handleSelectingAction(0)}
+                onSelectB={() => handleSelectingAction(1)}
               ></SelectingPanel>
             ) : (
               <ResultPanel
-                waitingSec={3}
-                opponentAction={0}
-                playerAction={1}
+                waitingSec={remainingSec}
+                opponentAction={opponentAction}
+                playerAction={playerAction}
               ></ResultPanel>
             )}
           </div>
