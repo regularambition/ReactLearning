@@ -23,20 +23,28 @@ const cardDescriptions = new Map<Card, string>([
   [Card.SUNGLASS, 'サングラスカードの効果説明をここに記載します。'],
 ]);
 
+const SectionType = {
+  BASIC_RULE: 0,
+  CARD_EFFECT: 1,
+  CARD_MATCHUP: 2,
+} as const;
+
+export type SectionType = (typeof SectionType)[keyof typeof SectionType];
+
 type CardEffectPageDefinition = {
-  type: 'cardEffect';
+  type: typeof SectionType.CARD_EFFECT;
   card: Card;
   description: string;
 };
 
 type CardMatchupPageDefinition = {
-  type: 'cardMatchup';
+  type: typeof SectionType.CARD_MATCHUP;
   winner: Card;
   loser: Card;
 };
 
 type BasicRulePageDefinition = {
-  type: 'basicRule';
+  type: typeof SectionType.BASIC_RULE;
   rules: readonly string[];
 };
 
@@ -45,22 +53,26 @@ type HowToPlayPageDefinition =
   | CardMatchupPageDefinition
   | BasicRulePageDefinition;
 
-const howToPlayPages: ReadonlyArray<HowToPlayPageDefinition> = [
+const basicRulePages: ReadonlyArray<BasicRulePageDefinition> = [
   {
-    type: 'basicRule',
+    type: SectionType.BASIC_RULE,
     rules: ['ルール説明1', 'ルール説明2'],
   },
   {
-    type: 'basicRule',
+    type: SectionType.BASIC_RULE,
     rules: ['ルール説明3', 'ルール説明4'],
   },
+];
+
+const howToPlayPages: ReadonlyArray<HowToPlayPageDefinition> = [
+  ...basicRulePages,
   ...Object.values(Card).map<CardEffectPageDefinition>((card) => ({
-    type: 'cardEffect',
+    type: SectionType.CARD_EFFECT,
     card,
     description: cardDescriptions.get(card) ?? '',
   })),
   ...fp.map<CardMatchupPageDefinition>(({ winner, loser }) => ({
-    type: 'cardMatchup',
+    type: SectionType.CARD_MATCHUP,
     winner,
     loser,
   })),
@@ -90,13 +102,13 @@ function HowToPlayScreen() {
 
   return (
     <SidebarScreenLayout>
-      {currentPageDefinition.type === 'basicRule' ? (
+      {currentPageDefinition.type === SectionType.BASIC_RULE ? (
         <BasicRulePage
           pageNo={currentPageIndex + 1}
           rules={currentPageDefinition.rules}
           {...pagingProps}
         />
-      ) : currentPageDefinition.type === 'cardEffect' ? (
+      ) : currentPageDefinition.type === SectionType.CARD_EFFECT ? (
         <CardEffectPage
           cardName={currentPageDefinition.card.name}
           iconSrc={currentPageDefinition.card.iconPath}
@@ -105,6 +117,11 @@ function HowToPlayScreen() {
         />
       ) : (
         <CardMatchupPage
+          pageNo={
+            currentPageIndex -
+            (basicRulePages.length + cardDescriptions.size) +
+            1
+          }
           winnerIconSrc={currentPageDefinition.winner.iconPath}
           winnerName={currentPageDefinition.winner.name}
           loserIconSrc={currentPageDefinition.loser.iconPath}
