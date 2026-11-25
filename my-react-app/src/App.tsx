@@ -5,6 +5,7 @@ import UserNameUpdateScreen from './screens/UserNameUpdateScreen/UserNameUpdateS
 import { getScreenTitle, ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
 import HowToPlayScreen from './screens/HowToPlayScreen/HowToPlayScreen';
+import CreditsScreen from './screens/CreditScreen/CreditsScreen';
 
 function App() {
   const { currentScreen, navigate } = useScreenNavigation();
@@ -21,8 +22,11 @@ function App() {
     if (currentScreen === ScreenId.USER_NAME_UPDATE) {
       return <UserNameUpdateScreen />;
     }
+    if (currentScreen === ScreenId.HOW_TO_PLAY) {
+      return <HowToPlayScreen />;
+    }
 
-    return <HowToPlayScreen />;
+    return <CreditsScreen />;
   };
 
   return (

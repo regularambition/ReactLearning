@@ -28,7 +28,9 @@ function MenuTopScreen() {
       </PlainButtonPair>
 
       <PlainButtonPair>
-        <PlainButton onClick={() => alert('機能3')}>機能3</PlainButton>
+        <PlainButton onClick={() => navigate(ScreenId.CREDITS)}>
+          クレジット
+        </PlainButton>
 
         <PlainButton onClick={() => alert('機能4')}>機能4</PlainButton>
       </PlainButtonPair>
