@@ -6,6 +6,7 @@ import { getScreenTitle, ScreenId } from './types/ScreenId';
 import { useScreenNavigation } from './contexts/ScreenNavigationContext';
 import HowToPlayScreen from './screens/HowToPlayScreen/HowToPlayScreen';
 import CreditsScreen from './screens/CreditScreen/CreditsScreen';
+import SimpleGameScreen from './screens/SimpleGameScreen/SimpleGameScreen';
 
 function App() {
   const { currentScreen, navigate } = useScreenNavigation();
@@ -25,8 +26,15 @@ function App() {
     if (currentScreen === ScreenId.HOW_TO_PLAY) {
       return <HowToPlayScreen />;
     }
+    if (currentScreen === ScreenId.CREDITS) {
+      return <CreditsScreen />;
+    }
 
-    return <CreditsScreen />;
+    return (
+      <SimpleGameScreen opponentScore={1} playerScore={3}>
+        <div>okokokokokok</div>
+      </SimpleGameScreen>
+    );
   };
 
   return (

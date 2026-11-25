@@ -32,7 +32,9 @@ function MenuTopScreen() {
           クレジット
         </PlainButton>
 
-        <PlainButton onClick={() => alert('機能4')}>機能4</PlainButton>
+        <PlainButton onClick={() => navigate(ScreenId.SIMPLE_GAME)}>
+          機能4
+        </PlainButton>
       </PlainButtonPair>
 
       <ConfirmationDialog

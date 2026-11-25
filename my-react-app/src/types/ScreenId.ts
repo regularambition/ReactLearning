@@ -7,6 +7,7 @@ export const ScreenId = {
   USER_NAME_UPDATE: 'UserNameUpdate',
   HOW_TO_PLAY: 'HowToPlay',
   CREDITS: 'credits',
+  SIMPLE_GAME: 'simpleGame',
 } as const;
 
 export type ScreenId = (typeof ScreenId)[keyof typeof ScreenId];
