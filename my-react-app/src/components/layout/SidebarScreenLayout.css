@@ -121,3 +121,9 @@
   /* テキストを途中で自動折り返ししない */
   white-space: nowrap;
 }
+
+.sidebar-screen-layout--no-header {
+  grid-template-columns: clamp(94px, 7vw, 112px) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: 'sidebar content';
+}

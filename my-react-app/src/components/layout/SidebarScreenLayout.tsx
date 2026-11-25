@@ -9,15 +9,22 @@ import { StarButton } from '../ui/buttons/ButtonWithIcon/StarButton';
 type SidebarScreenLayoutProps = {
   children: ReactNode;
   onBack?: () => void;
+  showHeader?: boolean;
 };
 
-function SidebarScreenLayout({ children, onBack }: SidebarScreenLayoutProps) {
+function SidebarScreenLayout({
+  children,
+  onBack,
+  showHeader = true,
+}: SidebarScreenLayoutProps) {
   const { userName } = useUser();
   const { canGoBack, goBack } = useScreenNavigation();
   const screenTitle = getScreenTitle(useScreenNavigation().currentScreen);
 
   return (
-    <div className="sidebar-screen-layout">
+    <div
+      className={`sidebar-screen-layout${showHeader ? '' : ' sidebar-screen-layout--no-header'}`}
+    >
       <nav
         className="sidebar-screen-layout__sidebar"
         aria-label={`${screenTitle}の操作メニュー`}
@@ -26,13 +33,16 @@ function SidebarScreenLayout({ children, onBack }: SidebarScreenLayoutProps) {
         <StarButton onClick={() => alert('★ボタン')} />
       </nav>
 
-      <div className="sidebar-screen-layout__user-name">
-        <h6>{userName}</h6>
-      </div>
-
-      <header className="sidebar-screen-layout__title">
-        <h6>{screenTitle}</h6>
-      </header>
+      {showHeader && (
+        <>
+          <div className="sidebar-screen-layout__user-name">
+            <h6>{userName}</h6>
+          </div>
+          <header className="sidebar-screen-layout__title">
+            <h6>{screenTitle}</h6>
+          </header>
+        </>
+      )}
 
       <div className="sidebar-screen-layout__content">{children}</div>
     </div>
