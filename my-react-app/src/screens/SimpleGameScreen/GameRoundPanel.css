@@ -1,0 +1,50 @@
+.game-round-panel {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  row-gap: clamp(12px, 3vh, 24px);
+  padding: clamp(16px, 3vw, 32px);
+  text-align: center;
+}
+
+.game-round-panel--selecting {
+  grid-template-rows: auto minmax(min-content, 1fr) minmax(min-content, 1fr);
+}
+
+.game-round-panel--result {
+  grid-template-rows: auto minmax(min-content, 1fr);
+}
+
+.game-round-panel p,
+.game-round-panel h2 {
+  margin: 0;
+}
+
+.game-round-panel__timer {
+  text-align: right;
+  font-size: clamp(16px, 2.8vw, 34px);
+}
+
+.game-round-panel__heading,
+.game-round-panel__summary {
+  align-self: center;
+  font-size: clamp(22px, 4vw, 48px);
+}
+
+.game-round-panel__summary {
+  display: grid;
+  gap: clamp(16px, 5vh, 56px);
+}
+
+.game-round-panel__actions {
+  align-self: center;
+  min-width: 0;
+}
+
+.game-round-panel__actions .plain-button {
+  width: min(38%, 320px);
+  min-height: clamp(56px, 16vh, 112px);
+  padding: 8px;
+  background: #a4bfeb;
+  font-size: clamp(16px, 2.4vw, 28px);
+}

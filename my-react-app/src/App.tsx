@@ -30,11 +30,7 @@ function App() {
       return <CreditsScreen />;
     }
 
-    return (
-      <SimpleGameScreen opponentScore={1} playerScore={3}>
-        <div>okokokokokok</div>
-      </SimpleGameScreen>
-    );
+    return <SimpleGameScreen />;
   };
 
   return (

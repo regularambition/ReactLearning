@@ -29,7 +29,7 @@ const SectionType = {
   CARD_MATCHUP: 2,
 } as const;
 
-export type SectionType = (typeof SectionType)[keyof typeof SectionType];
+type SectionType = (typeof SectionType)[keyof typeof SectionType];
 
 type CardEffectPageDefinition = {
   type: typeof SectionType.CARD_EFFECT;
