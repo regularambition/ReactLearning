@@ -5,7 +5,7 @@ function CreditsScreen() {
   return (
     <SidebarScreenLayout>
       <ol className="credits-page">
-        <li>素材1</li>
+        <li>https://commons.nicovideo.jp/works/nc470108</li>
         <li>素材2</li>
         <li>素材3</li>
         <li>素材4</li>
